@@ -48,10 +48,10 @@ public final class EmployeeManagementService extends BaseService implements Empl
 
 	@Override
 	public ResponseBean getEmployeeData(final ExecuteCase eCase, EmployeeBean pEmployeeBean) throws MVCException {
+		//    	完全一致、入力Idを引数に
 		Logger.logStart(new Throwable());
 
 		this.responseBean = this.executeDBAccess(eCase, Arrays.asList(pEmployeeBean));
-
 		Logger.logEnd(new Throwable());
 		return this.responseBean;
 	}
@@ -189,7 +189,10 @@ public final class EmployeeManagementService extends BaseService implements Empl
 				// Tips1: ループ文を使用すること（正解は複数パターンあります）
 				// Tips2: 格納先はローカル変数のempとすること
 				// [ここへ記述]
-				emp = pEmployeeBeanList.stream().findFirst().orElse(null);
+				for (int i = 0; i < 1; i++) {
+					emp = pEmployeeBeanList.get(i);
+				}
+
 				if (Objects.nonNull(emp)) {
 					Logger.log(new Throwable(), "pEmployeeBeanList[0].empId = " + emp.getEmpId());
 
@@ -200,6 +203,8 @@ public final class EmployeeManagementService extends BaseService implements Empl
 					// 2. 1で作成したオブジェクトをpreparedStatementへ格納
 					// Tips: sbQueryは、sbQuery.toString()でStringへ変換
 					// [ここへ記述]
+					this.preparedStatement = connection.prepareStatement(sbQuery.toString());
+					System.out.println(sbQuery.toString());
 
 					// LIKEを使用するため、パラメータを編集
 					final String empId = ExecuteCase.FIND_BY_EMPID_WITH_LIKE.equals(eCase)
@@ -209,13 +214,15 @@ public final class EmployeeManagementService extends BaseService implements Empl
 					// FIXME Step-5-6: preparedStatementに適切なパラメーターをセットしなさい。
 					// Tips: パラメータをセットするインデックスに注意
 					// [ここへ記述]
-
+					this.preparedStatement.setString(1, empId);
 					// FIXME Step-5-7: preparedStatementよりSQL(SELECT文)を実行し、resultSetへ結果を格納しなさい。
 					// [ここへ記述]
-
+					resultSet = this.preparedStatement.executeQuery();
 					Logger.log(new Throwable(), "SQL: " + this.preparedStatement.toString());
+					System.out.println("処理確認");
 				}
 				break;
+
 			default:
 				// NOP
 				break;
