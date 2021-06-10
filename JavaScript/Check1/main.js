@@ -2,12 +2,14 @@
 let numbers = [2, 5, 12, 13, 15, 18, 22];
 //ここに答えを実装してください。↓↓↓
 function isEven(num) {
-  if (num % 2 === 0){
+  if (num % 2 === 0) {
     console.log(num + 'は偶数です');
   }
 }
-let num = [2, 5, 12, 13, 15, 18, 22];
-console.log(num.filter(isEven));
+
+for (let i = 0; i < numbers.length; i++) {
+  isEven(numbers[i]);
+}
 
 
 //問2:以下の要件を満たすように実装してください。
