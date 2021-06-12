@@ -14,8 +14,11 @@
 </head>
 <body>
     <div id="box"></div>
-    <script src="js/main.js">
-        //問題①：idで要素を取得して、背景色を赤色に変更する処理を記述してください。 
+    <script>
+        //問題①：idで要素を取得して、背景色を赤色に変更する処理を記述してください。
+        document.getElementById(`box`).addEventListener(`click`,function(){
+            document.getElementById(`box`).style.background = `red`;
+        })
     </script>
 </body>
 </html>
