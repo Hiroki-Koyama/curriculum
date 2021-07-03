@@ -17,20 +17,20 @@
     </style>
 </head>
 <body>
-    <select onchange="changeLang()">
-        <option id="select">選択してください</option>
-        <option id="selected_jpn">日本語</option>
-        <option id="selected_en">English</option>
-        <option id="selected_all">全て表示</option>
+    <select onchange="changeLang()" id="languageList">
+        <option id="select" value="1">選択してください</option>
+        <option id="selected_jpn" value="2">日本語</option>
+        <option id="selected_en" value="3">English</option>
+        <option id="selected_all" value="4">全て表示</option>
     </select>
-    <table>
-        <tr>
+    <table value="4">
+        <tr value="2">
             <th>日本</th>
             <td>こんにちは</td>
             <td>ありがとう</td>
             <td>さようなら</td>
         </tr>
-        <tr>
+        <tr value="3">
             <th>English</th>
             <td>Hello</td>
             <td>Thank you</td>
@@ -40,6 +40,20 @@
 
     <script>
         //①onchangeで使用されている関数の中身を実装してください。
+        function changeLang(){
+          //let language = document.getElementById('languageList');
+          let jpn = document.getElementById('selected_jpn');
+          let en = document.getElementById('selected_en');
+          let option = document.createElement('option');
+        
+          if(jpn.value="2") {
+            option.value="2";
+          } else if(en.value="3") {
+            option.value="3"; 
+          } else {
+            option.value="4"; 
+          }
+        }
     </script>
 </body>
 </html>
