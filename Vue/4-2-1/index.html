@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  
+</head>
+
+<body>
+  <div id="app">
+    <p>{{ counter }}</p>
+    <button v-on:click = "counterBtn()">+1</button>
+    <!-- 「v-on」はよく使うので、以下のように書き換えることもできます。
+    <button @click="counterBtn">+1</button> -->
+    <p>{{ lessThanThree }}（算出プロパティ）</p>
+    <p>{{ lessThanThreeMethod() }}（メソッド）</p>
+    <button v-on:click = "unrelatedBtn()">関係ないボタン</button>
+    <p>{{ unrelated }}</p>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="main.js"></script>
+</body>
+</html>
